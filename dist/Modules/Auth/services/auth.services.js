@@ -23,7 +23,7 @@ const SendCode = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
         code: otpCode,
         to: instructor.email,
     });
-    if (send.error)
+    if (send === null || send === void 0 ? void 0 : send.error)
         return res.status(500).json({ message: 'Something went wrong', error: send.error });
     yield instructor.save();
     return res.status(200).json({ message: 'code sent successfully' });
