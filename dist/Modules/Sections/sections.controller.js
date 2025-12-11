@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SectionRouter = void 0;
+const express_1 = require("express");
+const comon_middleware_1 = require("../../Middlewares/comon.middleware");
+const sections_services_1 = require("./services/sections.services");
+const SectionRouter = (0, express_1.Router)();
+exports.SectionRouter = SectionRouter;
+SectionRouter.get('/', (0, comon_middleware_1.errCatcher)(sections_services_1.getSections));
+SectionRouter.post('/studentToSection', (0, comon_middleware_1.errCatcher)(sections_services_1.addStudentToSection));
+SectionRouter.get('/getSection', (0, comon_middleware_1.errCatcher)(sections_services_1.getSection));

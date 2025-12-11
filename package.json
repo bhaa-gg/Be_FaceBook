@@ -1,23 +1,32 @@
 {
-  "name": "bahaa_wafy-sun-wed-(7-10)--as5-01210031428",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:mon": "nodemon index.js",
-    "start:watch": "node --watch index.js"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node .",
+    "start:dev": "concurrently \"npm run build:watch\" \"nodemon .\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.9.8",
-    "sequelize": "^6.37.3"
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.8.1",
+    "@types/nodemailer": "^7.0.4",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1",
+    "nodemailer": "^7.0.11",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

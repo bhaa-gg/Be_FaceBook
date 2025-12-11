@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StudentRouter = void 0;
+const express_1 = require("express");
+const comon_middleware_1 = require("../../Middlewares/comon.middleware");
+const stundent_services_1 = require("./services/stundent.services");
+const StudentRouter = (0, express_1.Router)();
+exports.StudentRouter = StudentRouter;
+StudentRouter.post('/getById', (0, comon_middleware_1.errCatcher)(stundent_services_1.getStudentById));
+StudentRouter.get('/studentHistory', (0, comon_middleware_1.errCatcher)(stundent_services_1.getStudentHistory));

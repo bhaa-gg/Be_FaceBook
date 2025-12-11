@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthRouter = void 0;
+const express_1 = require("express");
+const comon_middleware_1 = require("../../Middlewares/comon.middleware");
+const auth_services_1 = require("./services/auth.services");
+const AuthRouter = (0, express_1.Router)();
+exports.AuthRouter = AuthRouter;
+AuthRouter.post('/sendCode', (0, comon_middleware_1.errCatcher)(auth_services_1.SendCode));
+AuthRouter.post('/verifyCode', (0, comon_middleware_1.errCatcher)(auth_services_1.VerifyCode));
