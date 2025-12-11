@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VerifyCode = exports.SendCode = void 0;
+const email_services_1 = require("../../../Services/email.services");
 const Instructor_model_1 = require("../../../DB/Models/Instructor.model");
 const SendCode = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { instructorId } = req.body;
@@ -18,10 +19,12 @@ const SendCode = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
         return res.status(404).json({ message: 'instructor not found' });
     const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
     instructor.authOtp = otpCode;
-    // await SendEmail({
-    //   code: otpCode,
-    //   to: instructor.email,
-    // })
+    const send = yield (0, email_services_1.SendEmail)({
+        code: otpCode,
+        to: instructor.email,
+    });
+    if (send.error)
+        return res.status(500).json({ message: 'Something went wrong', error: send.error });
     yield instructor.save();
     return res.status(200).json({ message: 'code sent successfully' });
 });

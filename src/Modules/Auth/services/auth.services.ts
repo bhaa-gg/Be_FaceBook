@@ -12,10 +12,11 @@ export const SendCode = async (req: Request, res: Response, next: NextFunction) 
 
   instructor.authOtp = otpCode
 
-  // await SendEmail({
-  //   code: otpCode,
-  //   to: instructor.email,
-  // })
+  const send : any = await SendEmail({
+    code: otpCode,
+    to: instructor.email,
+  })
+  if(send.error) return res.status(500).json({ message: 'Something went wrong', error: send.error }) 
 
   await instructor.save()
   return res.status(200).json({ message: 'code sent successfully' })

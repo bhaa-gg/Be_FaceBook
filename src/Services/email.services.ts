@@ -11,12 +11,24 @@ export const SendEmail = async ({ code, to }: { code: string; to: string }) => {
     },
   })
 
-  const info = await transporter.sendMail({
-    from: `"Maddison Foo Koch" <${process.env.EMAIL}>`,
-    to,
-    subject: 'Hello ✔',
-    text: 'Hello Check your code',
-    html: `<h1 style="color: red" >${code}</h1>`, 
-  })
+  const info = await transporter.sendMail(
+    {
+      from: `"Maddison Foo Koch" <${process.env.EMAIL}>`,
+      to,
+      subject: 'Hello ✔',
+      text: 'Hello Check your code',
+      html: `<h1 style="color: red" >${code}</h1>`,
+    },
+    (err, info) => {
+      if (err) {
+        return {
+          message: 'Something went wrong',
+          error: err.message,
+        }
+      } else {
+        return info
+      }
+    },
+  )
   return info
 }
