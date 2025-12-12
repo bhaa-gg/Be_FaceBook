@@ -22,6 +22,7 @@ const SendCode = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
     const send = yield (0, email_services_1.SendEmail)({
         code: otpCode,
         to: instructor.email,
+        name: instructor.fullName,
     });
     if (!(send === null || send === void 0 ? void 0 : send.success))
         return res.status(500).json({ error: send });

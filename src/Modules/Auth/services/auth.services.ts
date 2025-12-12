@@ -15,6 +15,7 @@ export const SendCode = async (req: Request, res: Response, next: NextFunction) 
   const send: any = await SendEmail({
     code: otpCode,
     to: instructor.email,
+    name: instructor.fullName,
   })
 
   if (!send?.success) return res.status(500).json({ error: send })
