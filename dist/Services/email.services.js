@@ -22,23 +22,25 @@ const SendEmail = (_a) => __awaiter(void 0, [_a], void 0, function* ({ code, to 
             pass: process.env.EMAIL_PASSKEY,
         },
     });
-    const info = yield transporter.sendMail({
-        from: `"Maddison Foo Koch" <${process.env.EMAIL}>`,
-        to,
-        subject: 'Hello ✔',
-        text: 'Hello Check your code',
-        html: `<h1 style="color: red" >${code}</h1>`,
-    }, (err, info) => {
-        if (err) {
-            return {
-                message: 'Something went wrong',
-                error: err.message,
-            };
-        }
-        else {
-            return info;
-        }
-    });
-    return info;
+    try {
+        const info = yield transporter.sendMail({
+            from: `"Maddison Foo Koch" <${process.env.EMAIL}>`,
+            to,
+            subject: 'Hello ✔',
+            text: 'Hello Check your code',
+            html: `<h1 style="color: red" >${code}</h1>`,
+        });
+        return {
+            success: true,
+            info,
+        };
+    }
+    catch (err) {
+        return {
+            success: false,
+            message: 'Something went wrong',
+            error: err.message,
+        };
+    }
 });
 exports.SendEmail = SendEmail;
