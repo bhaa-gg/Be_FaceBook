@@ -23,7 +23,6 @@
 //     }
 //   }
 // }
-import { config } from 'dotenv'
 import { Resend } from 'resend'
 
 export const SendEmail = async ({ code, to }: { code: string; to: string }) => {

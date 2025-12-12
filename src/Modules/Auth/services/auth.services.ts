@@ -17,12 +17,9 @@ export const SendCode = async (req: Request, res: Response, next: NextFunction) 
     to: instructor.email,
   })
 
-  return res.status(500).json({ send })
+  if (!send?.success) return res.status(500).json({ error: send })
 
-  if (send?.error)
-    return res.status(500).json({ message: 'Something went wrong', error: send.error })
-
-  // await instructor.save()
+  await instructor.save()
   return res.status(200).json({ message: 'code sent successfully' })
 }
 
