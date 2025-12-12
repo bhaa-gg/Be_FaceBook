@@ -1,27 +1,44 @@
-import { createTransport } from 'nodemailer'
-export const SendEmail = async ({ code, to }: { code: string; to: string }) => {
-  const transporter = createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASSKEY,
-    },
-  })
+// import { Resend } from 'resend'
 
+// const resend = new Resend(process.env.RESEND_API_KEY)
+
+// export const SendEmail = async ({ code, to }: { code: string; to: string }) => {
+//   try {
+//     const response = await resend.emails.send({
+//       from: 'yourname@resend.dev', // غيّرها للإيميل المسموح من Resend
+//       to,
+//       subject: 'Hello ✔',
+//       html: `<h1 style="color: red">${code}</h1>`,
+//     })
+
+//     return {
+//       success: true,
+//       info: response,
+//     }
+//   } catch (err: any) {
+//     return {
+//       success: false,
+//       message: 'Something went wrong',
+//       error: err.message,
+//     }
+//   }
+// }
+import { config } from 'dotenv'
+import { Resend } from 'resend'
+
+export const SendEmail = async ({ code, to }: { code: string; to: string }) => {
+  const resend = new Resend(process.env.RESEND_API_KEY)
   try {
-    const info = await transporter.sendMail({
-      from: `"Maddison Foo Koch" <${process.env.EMAIL}>`,
+    const response = await resend.emails.send({
+      from: 'Bahaa Wafy <onboarding@resend.dev>',
       to,
       subject: 'Hello ✔',
-      text: 'Hello Check your code',
-      html: `<h1 style="color: red" >${code}</h1>`,
+      html: `<h1 style="color: red">${code}</h1>`,
     })
+
     return {
       success: true,
-      info,
+      info: response,
     }
   } catch (err: any) {
     return {
