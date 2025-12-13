@@ -3,7 +3,6 @@ import { StudentModel } from '../../../DB/Models/student.model'
 import { SectionModel } from '../../../DB/Models/section.model'
 import { AttendanceModel } from '../../../DB/Models/attendance.model'
 import { LEC_DAYS } from '../../../Utils/constants.utils';
-console.log();
 
 export const addStudentToSection = async (req: Request, res: Response, next: NextFunction) => {
   const { sectionId } = req.body
