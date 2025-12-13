@@ -1,6 +1,4 @@
 "use strict";
-// import { Resend } from 'resend'
-// import { sendCodeTemp } from '../Utils/temps.utils'
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -15,27 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SendEmail = void 0;
-// export const SendEmail = async ({ code, to, name }: { code: string; to: string; name: string }) => {
-//   const resend = new Resend(process.env.RESEND_API_KEY)
-//   try {
-//     const response = await resend.emails.send({
-//       from: 'بهاء وافى <onboarding@resend.dev>', // اسم المرسل بالعربي
-//       to,
-//       subject: 'رمز التحقق الخاص بك ✔', // بالعربي
-//       html: sendCodeTemp(code, name),
-//     })
-//     return {
-//       success: true,
-//       info: response,
-//     }
-//   } catch (err: any) {
-//     return {
-//       success: false,
-//       message: 'err',
-//       error: err.message,
-//     }
-//   }
-// }
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const temps_utils_1 = require("../Utils/temps.utils");
 const SendEmail = (_a) => __awaiter(void 0, [_a], void 0, function* ({ code, to, name }) {

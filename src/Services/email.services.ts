@@ -1,32 +1,6 @@
-// import { Resend } from 'resend'
-// import { sendCodeTemp } from '../Utils/temps.utils'
 
-// export const SendEmail = async ({ code, to, name }: { code: string; to: string; name: string }) => {
-//   const resend = new Resend(process.env.RESEND_API_KEY)
-
-//   try {
-//     const response = await resend.emails.send({
-//       from: 'بهاء وافى <onboarding@resend.dev>', // اسم المرسل بالعربي
-//       to,
-//       subject: 'رمز التحقق الخاص بك ✔', // بالعربي
-//       html: sendCodeTemp(code, name),
-//     })
-
-//     return {
-//       success: true,
-//       info: response,
-//     }
-//   } catch (err: any) {
-//     return {
-//       success: false,
-//       message: 'err',
-//       error: err.message,
-//     }
-//   }
-// }
-
-import nodemailer from 'nodemailer' 
-import { sendCodeTemp } from '../Utils/temps.utils';
+import nodemailer from 'nodemailer'
+import { sendCodeTemp } from '../Utils/temps.utils'
 
 export const SendEmail = async ({ code, to, name }: { code: string; to: string; name: string }) => {
   try {
@@ -48,7 +22,7 @@ export const SendEmail = async ({ code, to, name }: { code: string; to: string; 
     }
 
     const info = await transporter.sendMail(mailOptions)
- 
+
     return {
       success: true,
       info,

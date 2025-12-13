@@ -12,3 +12,4 @@ export const sendCodeTemp = (code: string, name: string) => {
         </div>
         `
 }
+  
