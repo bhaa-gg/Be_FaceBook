@@ -13,7 +13,7 @@ exports.getSections = exports.getSection = exports.addStudentToSection = void 0;
 const student_model_1 = require("../../../DB/Models/student.model");
 const section_model_1 = require("../../../DB/Models/section.model");
 const attendance_model_1 = require("../../../DB/Models/attendance.model");
-const constant_utils_1 = require("../../../Utils/constant.utils");
+const constant_utils_1 = require("../../../utils/constant.utils");
 const addStudentToSection = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { sectionId } = req.body;
     const students = yield student_model_1.StudentModel.find({ sectionId }).select('_id');

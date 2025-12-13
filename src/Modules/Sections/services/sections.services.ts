@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { StudentModel } from '../../../DB/Models/student.model'
 import { SectionModel } from '../../../DB/Models/section.model'
 import { AttendanceModel } from '../../../DB/Models/attendance.model'
-import { LEC_DAYS } from '../../../Utils/constant.utils'
+import { LEC_DAYS } from '../../../utils/constant.utils'
 
 export const addStudentToSection = async (req: Request, res: Response, next: NextFunction) => {
   const { sectionId } = req.body

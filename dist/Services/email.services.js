@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SendEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
-const temps_utils_1 = require("../Utils/temps.utils");
+const temps_utils_1 = require("../utils/temps.utils.js");
 const SendEmail = (_a) => __awaiter(void 0, [_a], void 0, function* ({ code, to, name }) {
     try {
         const transporter = nodemailer_1.default.createTransport({
