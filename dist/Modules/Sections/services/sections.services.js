@@ -1,5 +1,4 @@
 "use strict";
-import { LEC_DAYS } from './../../../../dist/utils/constant.utils.js';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -14,6 +13,7 @@ exports.getSections = exports.getSection = exports.addStudentToSection = void 0;
 const student_model_1 = require("../../../DB/Models/student.model");
 const section_model_1 = require("../../../DB/Models/section.model");
 const attendance_model_1 = require("../../../DB/Models/attendance.model");
+const constant_utils_1 = require("../../../utils/constant.utils");
 const addStudentToSection = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { sectionId } = req.body;
     const students = yield student_model_1.StudentModel.find({ sectionId }).select('_id');
@@ -39,7 +39,7 @@ const getSection = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             studentId: student._id,
             instructorId: instructorId,
         });
-        return Object.assign(Object.assign({}, student.toObject()), { countAttendPercent: (countAttend / LEC_DAYS) * 100 });
+        return Object.assign(Object.assign({}, student.toObject()), { countAttendPercent: (countAttend / constant_utils_1.LEC_DAYS) * 100 });
     })));
     return res.status(200).json({
         message: 'section found successfully',
