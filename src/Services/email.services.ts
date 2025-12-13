@@ -25,7 +25,7 @@
 //   }
 // }
 
-import nodemailer from 'nodemailer'
+import nodemailer from 'nodemailer' 
 import { sendCodeTemp } from '../Utils/temps.utils';
 
 export const SendEmail = async ({ code, to, name }: { code: string; to: string; name: string }) => {
@@ -48,7 +48,7 @@ export const SendEmail = async ({ code, to, name }: { code: string; to: string; 
     }
 
     const info = await transporter.sendMail(mailOptions)
-
+ 
     return {
       success: true,
       info,
