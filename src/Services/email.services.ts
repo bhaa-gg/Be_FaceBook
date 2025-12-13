@@ -1,6 +1,6 @@
 
 import nodemailer from 'nodemailer'
-import { sendCodeTemp } from '../utils/temps.utils';
+import { sendCodeTemp } from '../Utils/temps.utils';
 
 export const SendEmail = async ({ code, to, name }: { code: string; to: string; name: string }) => {
   try {
