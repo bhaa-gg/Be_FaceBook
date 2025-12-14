@@ -27,7 +27,8 @@ app.post('/runSensor', (req, res) => {
     return res.json({ status: 'ok' });
 });
 app.get('/sensorState', (req, res) => {
-    return res.json({ sensorState });
+    res.json({ sensorState });
+    sensorState = false;
 });
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use((req, res) => res.status(404).json({
