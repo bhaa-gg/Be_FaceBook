@@ -8,4 +8,4 @@ const SectionRouter = (0, express_1.Router)();
 exports.SectionRouter = SectionRouter;
 SectionRouter.get('/', (0, comon_middleware_1.errCatcher)(sections_services_1.getSections));
 SectionRouter.post('/studentToSection', (0, comon_middleware_1.errCatcher)(sections_services_1.addStudentToSection));
-SectionRouter.get('/getSection', (0, comon_middleware_1.errCatcher)(sections_services_1.getSection));
+SectionRouter.post('/getSection', (0, comon_middleware_1.errCatcher)(sections_services_1.getSection));

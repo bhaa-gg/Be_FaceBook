@@ -6,6 +6,6 @@ const SectionRouter = Router()
 
 SectionRouter.get('/', errCatcher(getSections))
 SectionRouter.post('/studentToSection', errCatcher(addStudentToSection))
-SectionRouter.get('/getSection', errCatcher(getSection))
+SectionRouter.post('/getSection', errCatcher(getSection))
 
 export { SectionRouter }
