@@ -19,14 +19,17 @@ app.use('/section', SectionRouter)
 app.use('/students', StudentRouter)
 app.use('/auth', AuthRouter)
 app.use('/instructors', InstructorRouter)
+let sensorState = false
 
-let a = true
-app.post('/runSensor', async (req: Request, res: Response) => {
-  await axios.post('http://192.168.1.10/runSensor', {
-    sensorState: true,
-  })
-  return res.send('Success')
+app.post('/runSensor', (req, res) => {
+  sensorState = req.body.sensorState
+  return res.json({ status: 'ok' })
 })
+
+app.get('/sensorState', (req, res) => {
+  return res.json({ sensorState })
+})
+
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
 
 app.use((req: Request, res: Response) =>
