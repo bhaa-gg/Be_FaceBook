@@ -27,8 +27,7 @@ app.post('/runSensor', (req, res) => {
 })
 
 app.get('/sensorState', (req, res) => {
-  res.json({ sensorState })
-  sensorState = false
+  return res.json({ sensorState })
 })
 
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
