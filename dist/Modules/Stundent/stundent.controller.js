@@ -7,4 +7,4 @@ const stundent_services_1 = require("./services/stundent.services");
 const StudentRouter = (0, express_1.Router)();
 exports.StudentRouter = StudentRouter;
 StudentRouter.post('/getById', (0, comon_middleware_1.errCatcher)(stundent_services_1.getStudentById));
-StudentRouter.get('/studentHistory', (0, comon_middleware_1.errCatcher)(stundent_services_1.getStudentHistory));
+StudentRouter.post('/studentHistory', (0, comon_middleware_1.errCatcher)(stundent_services_1.getStudentHistory));

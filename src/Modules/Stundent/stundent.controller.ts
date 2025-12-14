@@ -5,6 +5,6 @@ import { getStudentById, getStudentHistory } from './services/stundent.services'
 const StudentRouter = Router()
 
 StudentRouter.post('/getById', errCatcher(getStudentById))
-StudentRouter.get('/studentHistory', errCatcher(getStudentHistory))
+StudentRouter.post('/studentHistory', errCatcher(getStudentHistory))
 
 export { StudentRouter }
