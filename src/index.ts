@@ -6,6 +6,7 @@ import { StudentRouter } from './Modules/Stundent/stundent.controller'
 import { AuthRouter } from './Modules/Auth/auth.controller'
 import { config } from 'dotenv'
 import { InstructorRouter } from './Modules/Instructor/instructor.controller'
+import axios from 'axios'
 const app = express()
 config()
 const port = process.env.PORT || 4000
@@ -19,12 +20,13 @@ app.use('/students', StudentRouter)
 app.use('/auth', AuthRouter)
 app.use('/instructors', InstructorRouter)
 
-// let a = true
-// app.post('/Hi', (req: Request, res: Response) => {
-//   console.log({ data: req.body })
-//   a = !a
-//   return res.send(a ? 'red' : 'green')
-// })
+let a = true
+app.post('/runSensor', async (req: Request, res: Response) => {
+  await axios.post('http://192.168.1.10/runSensor', {
+    sensorState: true,
+  })
+  return res.send('Success')
+})
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
 
 app.use((req: Request, res: Response) =>

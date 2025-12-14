@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { StudentModel } from '../../../DB/Models/student.model'
 import { SectionModel } from '../../../DB/Models/section.model' // ✅ Add this line
 import { LectureModel } from '../../../DB/Models/lecture.model'
-import { format, isSameDay } from 'date-fns'
+import { format, isSameDay, set } from 'date-fns'
 import { ar } from 'date-fns/locale'
 import { AttendanceModel } from '../../../DB/Models/attendance.model'
 
@@ -65,20 +65,21 @@ export const takeAttendance = async (req: Request, res: Response, next: NextFunc
   const todayArabic = format(dateNow, 'EEEE', { locale: ar })
   const currentTime = format(dateNow, 'HH:mm')
 
-  // const schedule = {
-  //   day: 'الاثنين',
-  //   from: set(new Date(), { hours: 10, minutes: 30 }),
-  //   to: set(new Date(), { hours: 12, minutes: 0 }),
-  // }
+  const schedule = {
+    day: 'الاثنين',
+    from: '10:30', // set(new Date(), { hours: 10, minutes: 30 }),
+    to: '12:00', // set(new Date(), { hours: 12, minutes: 0 }),
+  }
 
   const lecturesForDay = await LectureModel.findOne({
     sectionId: sectionFromUserId._id,
-    'lectureTime.day': todayArabic,
-    'lectureTime.from': { $lte: currentTime },
-    'lectureTime.to': { $gte: currentTime },
+    lectureTime: schedule,
+    // 'lectureTime.day': todayArabic,
+    // 'lectureTime.from': { $lte: currentTime },
+    // 'lectureTime.to': { $gte: currentTime },
   })
 
-  if (sectionFromUserId._id !== lecturesForDay?.sectionId)
+  if ((sectionFromUserId._id as any).toString() !== (lecturesForDay?.sectionId as any).toString())
     return res.status(404).json({ message: 'This user is not in this section' })
 
   if (!lecturesForDay) return res.status(404).json({ message: 'This section has no lectures now' })

@@ -12,6 +12,9 @@ export const getStudentById = async (req: Request, res: Response, next: NextFunc
   return res.status(200).send({ user: user, now: new Date() })
 }
 
+
+
+
 export const getStudentHistory = async (req: Request, res: Response, next: NextFunction) => {
   const { studentId, instructorId } = req.body
   

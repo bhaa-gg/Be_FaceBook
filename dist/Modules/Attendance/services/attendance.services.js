@@ -61,18 +61,19 @@ const takeAttendance = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     const dateNow = new Date();
     const todayArabic = (0, date_fns_1.format)(dateNow, 'EEEE', { locale: locale_1.ar });
     const currentTime = (0, date_fns_1.format)(dateNow, 'HH:mm');
-    // const schedule = {
-    //   day: 'الاثنين',
-    //   from: set(new Date(), { hours: 10, minutes: 30 }),
-    //   to: set(new Date(), { hours: 12, minutes: 0 }),
-    // }
+    const schedule = {
+        day: 'الاثنين',
+        from: '10:30', // set(new Date(), { hours: 10, minutes: 30 }),
+        to: '12:00', // set(new Date(), { hours: 12, minutes: 0 }),
+    };
     const lecturesForDay = yield lecture_model_1.LectureModel.findOne({
         sectionId: sectionFromUserId._id,
-        'lectureTime.day': todayArabic,
-        'lectureTime.from': { $lte: currentTime },
-        'lectureTime.to': { $gte: currentTime },
+        lectureTime: schedule,
+        // 'lectureTime.day': todayArabic,
+        // 'lectureTime.from': { $lte: currentTime },
+        // 'lectureTime.to': { $gte: currentTime },
     });
-    if (sectionFromUserId._id !== (lecturesForDay === null || lecturesForDay === void 0 ? void 0 : lecturesForDay.sectionId))
+    if (sectionFromUserId._id.toString() !== (lecturesForDay === null || lecturesForDay === void 0 ? void 0 : lecturesForDay.sectionId).toString())
         return res.status(404).json({ message: 'This user is not in this section' });
     if (!lecturesForDay)
         return res.status(404).json({ message: 'This section has no lectures now' });

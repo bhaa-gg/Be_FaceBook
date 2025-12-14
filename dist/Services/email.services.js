@@ -48,7 +48,7 @@ const SendEmail = (_a) => __awaiter(void 0, [_a], void 0, function* ({ code, to,
     try {
         const resend = new resend_1.Resend(process.env.RESEND_API_KEY);
         const response = yield resend.emails.send({
-            from: 'بهاء وافى <onboarding@resend.dev>', // أو دومينك الموثق
+            from: 'بهاء وافى <onboarding@resend.dev>',
             to,
             subject: 'رمز التحقق الخاص بك ✔',
             html: (0, temps_utils_1.sendCodeTemp)(code, name),
@@ -67,3 +67,5 @@ const SendEmail = (_a) => __awaiter(void 0, [_a], void 0, function* ({ code, to,
     }
 });
 exports.SendEmail = SendEmail;
+/**
+ */

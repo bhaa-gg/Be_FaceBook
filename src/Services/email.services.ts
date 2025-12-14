@@ -1,4 +1,3 @@
-
 // import nodemailer from 'nodemailer'
 // import { sendCodeTemp } from '../Utils/temps.utils';
 
@@ -36,7 +35,6 @@
 //   }
 // }
 
-
 import { Resend } from 'resend'
 import { sendCodeTemp } from '../Utils/temps.utils'
 
@@ -45,7 +43,7 @@ export const SendEmail = async ({ code, to, name }: { code: string; to: string; 
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     const response = await resend.emails.send({
-      from: 'بهاء وافى <onboarding@resend.dev>', // أو دومينك الموثق
+      from: 'بهاء وافى <onboarding@resend.dev>',
       to,
       subject: 'رمز التحقق الخاص بك ✔',
       html: sendCodeTemp(code, name),
@@ -63,3 +61,11 @@ export const SendEmail = async ({ code, to, name }: { code: string; to: string; 
     }
   }
 }
+
+
+
+
+
+/**
+ */
+
