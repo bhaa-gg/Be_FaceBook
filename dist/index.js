@@ -29,7 +29,7 @@ app.post('/runSensor', (req, res) => {
 app.get('/sensorState', (req, res) => {
     return res.json({ sensorState });
 });
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send('Hello in Attendance system!'));
 app.use((req, res) => res.status(404).json({
     message: 'Page Not Found',
 }));
