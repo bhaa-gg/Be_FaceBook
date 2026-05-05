@@ -6,11 +6,11 @@ import { StudentRouter } from './Modules/Stundent/stundent.controller'
 import { AuthRouter } from './Modules/Auth/auth.controller'
 import { config } from 'dotenv'
 import { InstructorRouter } from './Modules/Instructor/instructor.controller'
-import axios from 'axios'
-const app = express()
+
 config()
+
+const app = express()
 const port = process.env.PORT || 4000
-dbConnection()
 
 app.use(express.json())
 
@@ -19,6 +19,7 @@ app.use('/section', SectionRouter)
 app.use('/students', StudentRouter)
 app.use('/auth', AuthRouter)
 app.use('/instructors', InstructorRouter)
+
 let sensorState = false
 
 app.post('/runSensor', (req, res) => {
@@ -38,4 +39,16 @@ app.use((req: Request, res: Response) =>
   }),
 )
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+const startServer = async () => {
+  try {
+    await dbConnection()
+
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`)
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+startServer()
